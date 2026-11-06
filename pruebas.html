@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pruebas de Funciones Puras</title>
+</head>
+<body>
+    <h1>Resultados de las Pruebas</h1>
+    <div id="resultado"></div>
+
+    <script type="module">
+        import { calcularTotal } from './js/calculos.js';
+
+        // Escenario: Teclado (25.00) x 6 unidades = 150.00
+        // Envío Cuenca = 2.50 + IVA/Recargo si aplica = Total 166.75
+        const carritoPrueba = [
+            { id: 1, nombre: "Teclado Mecánico", precio: 25.00, cantidad: 6 }
+        ];
+        const tipoEnvio = "cuenca"; 
+
+        const totalObtenido = calcularTotal(carritoPrueba, tipoEnvio);
+        const totalEsperado = 166.75;
+
+        const contenedor = document.getElementById("resultado");
+        
+        if (Math.abs(totalObtenido - totalEsperado) < 0.01) {
+            contenedor.innerHTML = `<p style="color: green;">✔ Prueba superada: El total dio ${totalObtenido.toFixed(2)} (Esperado: ${totalEsperado})</p>`;
+        } else {
+            contenedor.innerHTML = `<p style="color: red;">❌ Prueba fallida: El total dio ${totalObtenido} (Esperado: ${totalEsperado})</p>`;
+        }
+    </script>
+</body>
+</html>
